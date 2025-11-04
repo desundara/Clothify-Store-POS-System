@@ -11,14 +11,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="505.0" prefWidth="752.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.controller.LoginFormController">
+<AnchorPane prefHeight="505.0" prefWidth="752.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.controller.auth.LoginFormController">
    <children>
       <Pane layoutX="15.0" layoutY="11.0" prefHeight="460.0" prefWidth="318.0" />
       <Pane layoutX="25.0" layoutY="21.0" prefHeight="460.0" prefWidth="318.0" style="-fx-background-color: E1F1FD;">
          <children>
             <ImageView fitHeight="76.0" fitWidth="200.0" layoutX="59.0" layoutY="23.0">
                <image>
-                  <Image url="@../../../../../../../../Downloads/ApparelPOS.png" />
+                  <Image url="@../../../../../../../../../Downloads/ApparelPOS.png" />
                </image>
             </ImageView>
             <Label layoutX="104.0" layoutY="106.0" prefHeight="34.0" prefWidth="110.0" text="ApparelPOS">
@@ -28,7 +28,7 @@
             </Label>
             <ImageView fitHeight="266.0" fitWidth="262.0" layoutX="28.0" layoutY="159.0">
                <image>
-                  <Image url="@../images/cashier_girl.png" />
+                  <Image url="@../../images/cashier_girl.png" />
                </image>
             </ImageView>
          </children>
@@ -66,7 +66,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Button fx:id="btnLogin" layoutX="50.0" layoutY="327.0" mnemonicParsing="false" onAction="#btnLoginOnAction" prefHeight="25.0" prefWidth="287.0" style="-fx-background-color: #4663AC;" text="Login" textFill="#fafafa">
+            <Button fx:id="btnLogin" layoutX="50.0" layoutY="327.0" mnemonicParsing="false" onKeyPressed="#handleEnterKey" onAction="#btnLoginOnAction" prefHeight="25.0" prefWidth="287.0" style="-fx-background-color: #4663AC;" text="Login" textFill="#fafafa">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
