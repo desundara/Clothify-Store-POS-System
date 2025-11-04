@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -10,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="513.0" prefWidth="752.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.controller.LoginFormController">
+<AnchorPane prefHeight="505.0" prefWidth="752.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.controller.LoginFormController">
    <children>
       <Pane layoutX="15.0" layoutY="11.0" prefHeight="460.0" prefWidth="318.0" />
       <Pane layoutX="25.0" layoutY="21.0" prefHeight="460.0" prefWidth="318.0" style="-fx-background-color: E1F1FD;">
@@ -20,16 +21,16 @@
                   <Image url="@../../../../../../../../Downloads/ApparelPOS.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="253.0" fitWidth="246.0" layoutX="36.0" layoutY="186.0">
-               <image>
-                  <Image url="@../../../../../../../../Downloads/cashier_girl.png" />
-               </image>
-            </ImageView>
             <Label layoutX="104.0" layoutY="106.0" prefHeight="34.0" prefWidth="110.0" text="ApparelPOS">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
+            <ImageView fitHeight="266.0" fitWidth="262.0" layoutX="28.0" layoutY="159.0">
+               <image>
+                  <Image url="@../images/cashier_girl.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <Pane layoutX="366.0" layoutY="21.0" prefHeight="460.0" prefWidth="369.0" style="-fx-background-color: E1F1FD;">
@@ -49,14 +50,13 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField layoutX="50.0" layoutY="141.0" prefHeight="25.0" prefWidth="287.0" />
-            <TextField layoutX="50.0" layoutY="222.0" prefHeight="26.0" prefWidth="287.0" />
-            <Hyperlink layoutX="50.0" layoutY="254.0" prefHeight="23.0" prefWidth="128.0" text="Forgot Password?">
+            <TextField fx:id="txtUsername" layoutX="50.0" layoutY="141.0" prefHeight="25.0" prefWidth="287.0" />
+            <Hyperlink fx:id="linkForgotPassword" layoutX="50.0" layoutY="247.0" onAction="#linkForgotPasswordOnAction" prefHeight="23.0" prefWidth="128.0" text="Forgot Password?">
                <font>
                   <Font size="14.0" />
                </font>
             </Hyperlink>
-            <Hyperlink layoutX="150.0" layoutY="377.0" text="Sign Up">
+            <Hyperlink fx:id="linkSignup" layoutX="150.0" layoutY="377.0" onAction="#linkSignupOnAction" text="Sign Up">
                <font>
                   <Font size="14.0" />
                </font>
@@ -66,11 +66,12 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Button layoutX="50.0" layoutY="327.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="287.0" style="-fx-background-color: 4663Ab;" text="Login">
+            <Button fx:id="btnLogin" layoutX="50.0" layoutY="327.0" mnemonicParsing="false" onAction="#btnLoginOnAction" prefHeight="25.0" prefWidth="287.0" style="-fx-background-color: #4663AC;" text="Login" textFill="#fafafa">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Button>
+            <PasswordField fx:id="txtPassword" layoutX="50.0" layoutY="222.0" prefHeight="25.0" prefWidth="287.0" />
          </children>
       </Pane>
    </children>
