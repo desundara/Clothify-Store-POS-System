@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="520.0" prefWidth="912.0" style="-fx-background-color: #f8f9fa;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.controller.inventory.ProductManagementController">
+
+    <VBox prefHeight="480.0" prefWidth="826.0" spacing="20.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+
+        <Label style="-fx-font-size: 24; -fx-font-weight: bold;" text="Product Management" />
+
+        <!-- Search Section -->
+        <HBox alignment="CENTER_LEFT" spacing="15.0">
+            <TextField fx:id="searchField" prefWidth="300.0" promptText="Search by code or name..." />
+            <Button fx:id="btnSearch" onAction="#btnSearchOnAction" style="-fx-background-color: #4663AC;" text="Search" textFill="WHITE" />
+        </HBox>
+
+        <!-- Main Content -->
+        <HBox spacing="20.0" VBox.vgrow="ALWAYS">
+
+            <!-- Table Section -->
+            <VBox prefHeight="379.0" prefWidth="694.0" spacing="10.0">
+                <Label style="-fx-font-size: 18; -fx-font-weight: bold;" text="All Products" />
+
+                <TableView fx:id="productTable" onMouseClicked="#handleTableOnMouseClick" prefHeight="342.0" prefWidth="547.0" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colProductId" prefWidth="64.80001831054688" text="Product ID" />
+                        <TableColumn fx:id="colCode" prefWidth="65.60000610351562" text="Code" />
+                        <TableColumn fx:id="colName" prefWidth="153.5999755859375" text="Product Name" />
+                        <TableColumn fx:id="colPrice" prefWidth="83.20001220703125" text="Price" />
+                        <TableColumn fx:id="colQty" prefWidth="57.5999755859375" text="Qty" />
+                        <TableColumn fx:id="colCategory" prefWidth="110.39999999999998" text="Category ID" />
+                    </columns>
+                </TableView>
+            </VBox>
+
+            <!-- Form Section -->
+            <VBox prefHeight="379.0" prefWidth="469.0" spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 20;">
+                <Label style="-fx-font-size: 18; -fx-font-weight: bold;" text="Add/Edit Product" />
+
+                <HBox prefHeight="24.0" prefWidth="274.0">
+                    <children>
+                        <Label prefHeight="26.0" prefWidth="94.0" text="Product ID : ">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txtProductId" prefHeight="26.0" prefWidth="175.0" editable="false" />
+                    </children>
+                </HBox>
+
+                <HBox layoutX="30.0" layoutY="72.0" prefHeight="24.0" prefWidth="274.0">
+                    <children>
+                        <Label prefHeight="26.0" prefWidth="94.0" text="Code : ">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txtCode" prefHeight="26.0" prefWidth="175.0" />
+                    </children>
+                </HBox>
+
+                <HBox layoutX="30.0" layoutY="113.0" prefHeight="24.0" prefWidth="274.0">
+                    <children>
+                        <Label prefHeight="26.0" prefWidth="94.0" text="Name :">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txtName" prefHeight="26.0" prefWidth="175.0" />
+                    </children>
+                </HBox>
+
+                <HBox layoutX="30.0" layoutY="154.0" prefHeight="24.0" prefWidth="274.0">
+                    <children>
+                        <Label prefHeight="26.0" prefWidth="94.0" text="Price : ">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txtPrice" prefHeight="26.0" prefWidth="175.0" />
+                    </children>
+                </HBox>
+
+                <HBox layoutX="30.0" layoutY="329.0" prefHeight="24.0" prefWidth="274.0">
+                    <children>
+                        <Label prefHeight="26.0" prefWidth="94.0" text="Qty : ">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txtQty" prefHeight="26.0" prefWidth="175.0" />
+                    </children>
+                </HBox>
+
+                <HBox layoutX="30.0" layoutY="367.0" prefHeight="24.0" prefWidth="274.0">
+                    <children>
+                        <Label prefHeight="26.0" prefWidth="94.0" text="Category ID : ">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txtCategoryId" prefHeight="26.0" prefWidth="175.0" />
+                    </children>
+                </HBox>
+
+                <HBox alignment="CENTER" spacing="10.0">
+                    <Button fx:id="btnAddProduct" onAction="#btnAddProductOnAction" prefHeight="26.0" prefWidth="62.0" style="-fx-background-color: #4663AC;" text="Add" textFill="WHITE" />
+                    <Button fx:id="btnUpdateProduct" onAction="#btnUpdateProductOnAction" style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-pref-width: 80;" text="Update" />
+                    <Button fx:id="btnDeleteProduct" onAction="#btnDeleteProductOnAction" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-pref-width: 80;" text="Delete" />
+                    <Button fx:id="btnClear" onAction="#btnClearOnAction" style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-pref-width: 80;" text="Clear" />
+                </HBox>
+            </VBox>
+        </HBox>
+
+    </VBox>
+
+</AnchorPane>
