@@ -2,6 +2,7 @@ package edu.icet.controller.auth;
 
 import edu.icet.db.DBConnection;
 import edu.icet.util.PasswordUtil;
+import edu.icet.util.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -87,46 +88,31 @@ public class LoginFormController implements Initializable {
     }
 
     private boolean isValidUser(String username, String password) {
-        String sql = "SELECT password, role FROM user WHERE username = ? AND is_active = 1";
-
-        System.out.println("=== ENHANCED LOGIN DEBUG ===");
-        System.out.println("Input - Username: '" + username + "', Password: '" + password + "'");
+        String sql = "SELECT user_id, password, role FROM user WHERE username = ? AND is_active = 1";
 
         try (var connection = DBConnection.getInstance().getConnection();
              var pstm = connection.prepareStatement(sql)) {
 
             pstm.setString(1, username);
-            var resultSet = pstm.executeQuery();
+            var rs = pstm.executeQuery();
 
-            if (resultSet.next()) {
-                String storedPassword = resultSet.getString("password");
-                String role = resultSet.getString("role");
+            if (rs.next()) {
+                String storedPassword = rs.getString("password");
+                String role = rs.getString("role");
+                int userId = rs.getInt("user_id");
 
-                System.out.println("Stored - Password: '" + storedPassword + "', Role: " + role);
+                if (PasswordUtil.checkPassword(password, storedPassword)) {
 
-                boolean bcryptMatch = PasswordUtil.checkPassword(password, storedPassword);
-                System.out.println("BCrypt Result: " + bcryptMatch);
+                    // ✅ store login session
+                    SessionManager.setCurrentUser(username, role, userId);
 
-                if (bcryptMatch) {
-                    System.out.println("✅ Authentication SUCCESS - Role: " + role);
-                    showSuccess("Login Successful!");
-
-                    // Display the relevant dashboard for the logged-in user's role
                     openDashboard(role);
                     return true;
                 }
-
-                System.out.println("❌ BCrypt authentication FAILED");
-                return false;
-            } else {
-                System.out.println("❌ User not found in database");
             }
-
         } catch (Exception e) {
-            System.out.println("❌ Database error: " + e.getMessage());
             e.printStackTrace();
         }
-
         return false;
     }
 

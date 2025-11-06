@@ -1,4 +1,4 @@
-package edu.icet.controller;
+package edu.icet.controller.auth;
 
 import edu.icet.db.DBConnection;
 import edu.icet.util.PasswordUtil;

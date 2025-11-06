@@ -11,13 +11,13 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="587.0" prefWidth="775.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.controller.RegistrationFormController">
+<AnchorPane prefHeight="587.0" prefWidth="775.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.controller.auth.RegistrationFormController">
    <children>
       <Pane layoutX="35.0" layoutY="31.0" prefHeight="534.0" prefWidth="318.0" style="-fx-background-color: E1F1FD;">
          <children>
             <ImageView fitHeight="76.0" fitWidth="200.0" layoutX="59.0" layoutY="23.0">
                <image>
-                  <Image url="@../../../../../../../../Downloads/ApparelPOS.png" />
+                  <Image url="@../../../../../../../../../Downloads/ApparelPOS.png" />
                </image>
             </ImageView>
             <Label layoutX="104.0" layoutY="106.0" prefHeight="34.0" prefWidth="110.0" text="ApparelPOS">
@@ -27,7 +27,7 @@
             </Label>
             <ImageView fitHeight="266.0" fitWidth="262.0" layoutX="28.0" layoutY="192.0">
                <image>
-                  <Image url="@../images/cashier_girl.png" />
+                  <Image url="@../../images/cashier_girl.png" />
                </image>
             </ImageView>
          </children>
