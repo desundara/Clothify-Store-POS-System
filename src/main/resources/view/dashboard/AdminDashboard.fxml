@@ -9,71 +9,117 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.controller.dashboard.AdminDashboardController">
+<BorderPane prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #f8f9fa;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.controller.dashboard.AdminDashboardController">
 
     <!-- Left Sidebar Menu -->
     <left>
-        <VBox prefWidth="200" spacing="10" style="-fx-background-color: #2c3e50; -fx-padding: 20;">
-         <ImageView fitHeight="57.0" fitWidth="162.0">
-            <image>
-               <Image url="@../../images/ApparelPOS.png" />
-            </image>
-         </ImageView>
-            <Separator />
+        <VBox prefHeight="700.0" prefWidth="200.0" spacing="15.0" style="-fx-background-color: #2c3e50; -fx-padding: 20;">
+            <!-- Logo -->
+            <ImageView fitHeight="50.0" fitWidth="160.0" preserveRatio="true">
+                <image>
+                    <Image url="@../../images/ApparelPOS.png" />
+                </image>
+            </ImageView>
+
+            <Separator style="-fx-background-color: #34495e;" />
 
             <!-- Menu Buttons -->
-            <Button fx:id="btnDashboard" onAction="#btnDashboardOnAction" style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-pref-width: 160;" text="Dashboard" />
-            <Button fx:id="btnProduct" onAction="#btnProductOnAction" style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-pref-width: 160;" text="Product" />
-            <Button fx:id="btnSales" onAction="#btnSalesOnAction" style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-pref-width: 160;" text="Sales" />
-            <Button fx:id="btnInventory" onAction="#btnInventoryOnAction" style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-pref-width: 160;" text="Inventory" />
-            <Button fx:id="btnPurchaseOrder" onAction="#btnPurchaseOrderOnAction" style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-pref-width: 160;" text="Purchase Order" />
-            <Button fx:id="btnReport" onAction="#btnReportOnAction" style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-pref-width: 160;" text="Report" />
-            <Button fx:id="btnStaff" onAction="#btnStaffOnAction" style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-pref-width: 160;" text="Staffs" />
+            <VBox spacing="8.0">
+                <Button fx:id="btnDashboard" onAction="#btnDashboardOnAction" style="-fx-background-color: #4663AC; -fx-text-fill: white; -fx-pref-width: 180; -fx-pref-height: 40; -fx-font-size: 14; -fx-background-radius: 5;" text="Dashboard" />
+                <Button fx:id="btnProduct" onAction="#btnProductOnAction" style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-pref-width: 180; -fx-pref-height: 40; -fx-font-size: 14; -fx-background-radius: 5;" text="Product" />
+                <Button fx:id="btnSales" onAction="#btnSalesOnAction" style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-pref-width: 180; -fx-pref-height: 40; -fx-font-size: 14; -fx-background-radius: 5;" text="Sales" />
+                <Button fx:id="btnInventory" onAction="#btnInventoryOnAction" style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-pref-width: 180; -fx-pref-height: 40; -fx-font-size: 14; -fx-background-radius: 5;" text="Inventory" />
+                <Button fx:id="btnPurchaseOrder" onAction="#btnPurchaseOrderOnAction" style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-pref-width: 180; -fx-pref-height: 40; -fx-font-size: 14; -fx-background-radius: 5;" text="Purchase Order" />
+                <Button fx:id="btnReport" onAction="#btnReportOnAction" style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-pref-width: 180; -fx-pref-height: 40; -fx-font-size: 14; -fx-background-radius: 5;" text="Report" />
+                <Button fx:id="btnStaff" onAction="#btnStaffOnAction" style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-pref-width: 180; -fx-pref-height: 40; -fx-font-size: 14; -fx-background-radius: 5;" text="Staffs" />
+            </VBox>
 
             <VBox VBox.vgrow="ALWAYS" />
-            <Button fx:id="btnLogout" onAction="#btnLogoutOnAction" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-pref-width: 160;" text="Log Out" />
+
+            <!-- Logout Button -->
+            <Button fx:id="btnLogout" onAction="#btnLogoutOnAction" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-pref-width: 180; -fx-pref-height: 40; -fx-font-size: 14; -fx-background-radius: 5;" text="Log Out" />
         </VBox>
     </left>
 
     <!-- Main Content Area -->
     <center>
-        <StackPane>
-            <VBox spacing="20" style="-fx-padding: 20;">
-                <!-- Welcome Header -->
-                <Label fx:id="lblWelcome" style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Welcome, Admin!" />
+        <VBox prefHeight="700.0" prefWidth="1000.0" spacing="20.0" style="-fx-padding: 25;">
+            <!-- Welcome Header -->
+            <HBox alignment="CENTER_LEFT" spacing="15.0">
+                <Label fx:id="lblWelcome" style="-fx-font-size: 28; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Welcome, admin!" />
+                <Region HBox.hgrow="ALWAYS" />
+                <Label style="-fx-text-fill: #27ae60; -fx-font-weight: bold; -fx-font-size: 14;" text="Active Staff: 3 Online now" />
+            </HBox>
 
-                <!-- Statistics Cards -->
-                <HBox spacing="20">
-                    <!-- Total Sales Card -->
-                    <VBox style="-fx-background-color: #4663AC; -fx-background-radius: 10; -fx-padding: 20; -fx-pref-width: 200;">
-                        <Label style="-fx-text-fill: white; -fx-font-size: 14;" text="Total Sales" />
-                        <Label style="-fx-text-fill: white; -fx-font-size: 18; -fx-font-weight: bold;" text="LKR 585,000.00" />
-                        <Label style="-fx-text-fill: #ecf0f1; -fx-font-size: 12;" text="Last week" />
+            <!-- Statistics Cards -->
+            <HBox alignment="CENTER" spacing="20.0">
+                <!-- Total Sales Card -->
+                <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 20; -fx-pref-width: 220; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+                    <Label style="-fx-text-fill: #7f8c8d; -fx-font-size: 14;" text="Total Sales" />
+                    <Label style="-fx-text-fill: #2c3e50; -fx-font-size: 22; -fx-font-weight: bold;" text="LKR 585,000.00" />
+                    <Label style="-fx-text-fill: #95a5a6; -fx-font-size: 12;" text="Last week" />
+                </VBox>
+
+                <!-- Units Sold Card -->
+                <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 20; -fx-pref-width: 220; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+                    <Label style="-fx-text-fill: #7f8c8d; -fx-font-size: 14;" text="Units Sold" />
+                    <Label style="-fx-text-fill: #2c3e50; -fx-font-size: 22; -fx-font-weight: bold;" text="4,078" />
+                    <Label style="-fx-text-fill: #95a5a6; -fx-font-size: 12;" text="Last week" />
+                </VBox>
+
+                <!-- Out of Stock Card -->
+                <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 20; -fx-pref-width: 220; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+                    <Label style="-fx-text-fill: #7f8c8d; -fx-font-size: 14;" text="Out Of Stock" />
+                    <Label style="-fx-text-fill: #e74c3c; -fx-font-size: 22; -fx-font-weight: bold;" text="15" />
+                    <Label style="-fx-text-fill: #95a5a6; -fx-font-size: 12;" text="Today" />
+                </VBox>
+            </HBox>
+
+            <!-- Main Content Section -->
+            <HBox alignment="TOP_LEFT" spacing="20.0">
+                <!-- Left Side - Top Selling Products -->
+                <VBox prefWidth="700.0" spacing="15.0">
+                    <!-- Top Selling Products Table -->
+                    <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+                        <Label style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Top Selling Products" />
+
+                        <TableView fx:id="topProductsTable" prefHeight="200.0" prefWidth="625.0" style="-fx-border-color: transparent;">
+                            <columns>
+                                <TableColumn fx:id="colProductName" prefWidth="258.3999900817871" text="Product Name" />
+                                <TableColumn fx:id="colUnitsSold" prefWidth="188.79998779296875" text="Units Sold" />
+                                <TableColumn fx:id="colRevenue" prefWidth="179.99993896484375" text="Revenue" />
+                            </columns>
+                        </TableView>
                     </VBox>
 
-                    <!-- Units Sold Card -->
-                    <VBox style="-fx-background-color: #2ecc71; -fx-background-radius: 10; -fx-padding: 20; -fx-pref-width: 200;">
-                        <Label style="-fx-text-fill: white; -fx-font-size: 14;" text="Unit Sold" />
-                        <Label style="-fx-text-fill: white; -fx-font-size: 18; -fx-font-weight: bold;" text="4,078" />
-                        <Label style="-fx-text-fill: #ecf0f1; -fx-font-size: 12;" text="Last week" />
+                    <!-- Sales Trend Section -->
+                    <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                            <Label style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Sales Trend (Last 7 Days)" />
+                            <Region HBox.hgrow="ALWAYS" />
+                            <Button style="-fx-background-color: transparent; -fx-text-fill: #4663AC; -fx-border-color: #4663AC; -fx-border-radius: 5;" text="View All Products" />
+                        </HBox>
+                        <!-- Chart would go here -->
+                        <Label style="-fx-text-fill: #95a5a6; -fx-font-style: italic; -fx-padding: 40 0; -fx-alignment: center;" text="Sales chart visualization area" />
                     </VBox>
+                </VBox>
 
-                    <!-- Out of Stock Card -->
-                    <VBox style="-fx-background-color: #e74c3c; -fx-background-radius: 10; -fx-padding: 20; -fx-pref-width: 200;">
-                        <Label style="-fx-text-fill: white; -fx-font-size: 14;" text="Out Of Stock" />
-                        <Label style="-fx-text-fill: white; -fx-font-size: 18; -fx-font-weight: bold;" text="2,400" />
+                <!-- Right Side - Quick Actions -->
+                <VBox prefWidth="280.0" spacing="15.0">
+                    <!-- Quick Action Buttons -->
+                    <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+                        <Label style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Quick Actions" />
+                        <VBox spacing="10.0" style="-fx-padding: 15 0 0 0;">
+                            <Button fx:id="btnAddNewProduct" onAction="#btnAddNewProductOnAction" style="-fx-background-color: #4663AC; -fx-text-fill: white; -fx-pref-width: 240; -fx-pref-height: 40; -fx-font-size: 14; -fx-background-radius: 5;" text="Add New Product" />
+                            <Button fx:id="btnNewSale" onAction="#btnNewSaleOnAction" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-pref-width: 240; -fx-pref-height: 40; -fx-font-size: 14; -fx-background-radius: 5;" text="New Sale" />
+                            <Button fx:id="btnManageCategories" onAction="#btnManageCategoriesOnAction" style="-fx-background-color: #8e44ad; -fx-text-fill: white; -fx-pref-width: 240; -fx-pref-height: 40; -fx-font-size: 14; -fx-background-radius: 5;" text="Manage Categories" />
+                        </VBox>
                     </VBox>
-                </HBox>
-            <TableView prefHeight="200.0" prefWidth="640.0" style="-fx-background-radius: 10;">
-              <columns>
-                <TableColumn prefWidth="460.8000240325928" text="Top Selling Products" />
-                <TableColumn prefWidth="177.60000610351562" text="Last 7 days" />
-              </columns>
-            </TableView>
-            </VBox>
-        </StackPane>
+                </VBox>
+            </HBox>
+        </VBox>
     </center>
 </BorderPane>
