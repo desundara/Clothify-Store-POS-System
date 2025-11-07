@@ -8,7 +8,6 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 public class CategoryDTO {
-    private Integer categoryId;
     private String name;
     private String description;
 }
