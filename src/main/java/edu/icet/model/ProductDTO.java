@@ -8,11 +8,12 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 public class ProductDTO {
-    private Integer productId;
+    private int productId;
     private String code;
     private String name;
-    private Double price;
-    private Integer qty;
-    private Integer categoryId;
+    private double price;
+    private int qty;
+    private int categoryId;
+    private String categoryName;
 
 }
