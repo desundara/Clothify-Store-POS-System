@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import javafx.event.ActionEvent;
 
 import java.io.IOException;
 
@@ -22,10 +23,18 @@ public class NavigationUtil {
         try {
             System.out.println("Loading: " + fxmlPath);
 
-            Parent root = FXMLLoader.load(NavigationUtil.class.getResource(fxmlPath));
+            FXMLLoader loader = new FXMLLoader(NavigationUtil.class.getResource(fxmlPath));
+            Parent root = loader.load();
+
             Stage newStage = new Stage();
             newStage.setTitle(title);
-            newStage.setScene(new Scene(root));
+
+            // Create scene with the loaded root (this will use FXML's original size)
+            Scene scene = new Scene(root);
+            newStage.setScene(scene);
+
+            // Let the window size be determined by the FXML's prefWidth/prefHeight
+            // Don't set fixed width/height - let it use the natural size from FXML
 
             // Close current window if it exists
             if (currentStage != null) {
@@ -35,18 +44,19 @@ public class NavigationUtil {
 
             newStage.show();
             currentStage = newStage;
-            System.out.println("Now displaying: " + currentStage.getTitle());
+            System.out.println("Now displaying: " + currentStage.getTitle() + " with natural size");
 
         } catch (IOException e) {
             System.err.println("Error loading FXML: " + fxmlPath);
-            showErrorAlert("Page not available: " + title);
+            e.printStackTrace();
+            showErrorAlert("Page not available: " + title + "\nError: " + e.getMessage());
         } catch (Exception e) {
             System.err.println("Unexpected error: " + e.getMessage());
             e.printStackTrace();
         }
     }
 
-    // Navigation methods
+    // Navigation methods with specific sizing where needed
     public static void loadLoginForm() {
         System.out.println("Navigating to Login Form...");
         loadFXML("/view/auth/login.fxml", "Clothify POS - Login");
@@ -59,7 +69,12 @@ public class NavigationUtil {
 
     public static void loadProductManagement() {
         System.out.println("Navigating to Product Management...");
-        loadFXML("/view/inventory/product-management.fxml", "Clothify POS - Product Management");
+        loadFXML("/view/inventory/ProductManagement.fxml", "Clothify POS - Product Management");
+    }
+
+    public static void loadCategoryManagement() {
+        System.out.println("Navigating to Category Management...");
+        loadFXML("/view/inventory/CategoryManagement.fxml", "Clothify POS - Category Management");
     }
 
     public static void loadSalesManagement() {
@@ -87,6 +102,34 @@ public class NavigationUtil {
         loadFXML("/view/staff/staff-management.fxml", "Clothify POS - Staff Management");
     }
 
+    // Alternative method for specific window sizing (if needed)
+    public static void loadFXMLWithSize(String fxmlPath, String title, double width, double height) {
+        try {
+            System.out.println("Loading: " + fxmlPath + " with size: " + width + "x" + height);
+
+            FXMLLoader loader = new FXMLLoader(NavigationUtil.class.getResource(fxmlPath));
+            Parent root = loader.load();
+
+            Stage newStage = new Stage();
+            newStage.setTitle(title);
+            newStage.setScene(new Scene(root, width, height));
+
+            // Close current window if it exists
+            if (currentStage != null) {
+                System.out.println("Closing current stage: " + currentStage.getTitle());
+                currentStage.close();
+            }
+
+            newStage.show();
+            currentStage = newStage;
+            System.out.println("Now displaying: " + currentStage.getTitle());
+
+        } catch (Exception e) {
+            System.err.println("Error loading FXML: " + fxmlPath);
+            e.printStackTrace();
+        }
+    }
+
     // GUARANTEED logout method - ALWAYS works
     public static void logout() {
         System.out.println("=== LOGOUT INITIATED ===");
@@ -103,7 +146,7 @@ public class NavigationUtil {
             for (Window window : Window.getWindows()) {
                 if (window instanceof Stage) {
                     Stage stage = (Stage) window;
-                    if (stage.isShowing() && stage != currentStage) {
+                    if (stage.isShowing()) {
                         System.out.println("Closing: " + stage.getTitle());
                         stage.close();
                     }
@@ -115,7 +158,7 @@ public class NavigationUtil {
             Parent root = FXMLLoader.load(NavigationUtil.class.getResource("/view/auth/login.fxml"));
             Stage loginStage = new Stage();
             loginStage.setTitle("Clothify POS - Login");
-            loginStage.setScene(new Scene(root));
+            loginStage.setScene(new Scene(root)); // Use natural size from FXML
             loginStage.show();
 
             currentStage = loginStage;
@@ -128,7 +171,7 @@ public class NavigationUtil {
     }
 
     // Alternative: Event-based logout (MOST RELIABLE)
-    public static void logout(javafx.event.ActionEvent event) {
+    public static void logout(ActionEvent event) {
         System.out.println("=== EVENT-BASED LOGOUT ===");
 
         try {
@@ -141,7 +184,7 @@ public class NavigationUtil {
             Parent root = FXMLLoader.load(NavigationUtil.class.getResource("/view/auth/login.fxml"));
             Stage loginStage = new Stage();
             loginStage.setTitle("Clothify POS - Login");
-            loginStage.setScene(new Scene(root));
+            loginStage.setScene(new Scene(root)); // Use natural size from FXML
             loginStage.show();
 
             NavigationUtil.currentStage = loginStage;
@@ -153,17 +196,12 @@ public class NavigationUtil {
         }
     }
 
-    // Simple navigate to login (uses logout logic)
-    public static void navigateToLogin() {
-        logout(); // Use the guaranteed logout method
-    }
-
     // Show error alert for missing FXML files
     private static void showErrorAlert(String message) {
         try {
-            javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
-            alert.setTitle("Information");
-            alert.setHeaderText(null);
+            javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR);
+            alert.setTitle("Navigation Error");
+            alert.setHeaderText("Cannot load page");
             alert.setContentText(message);
             alert.showAndWait();
         } catch (Exception e) {
