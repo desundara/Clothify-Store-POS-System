@@ -178,7 +178,7 @@ public class StaffDashboardController implements Initializable {
     private void btnProductsViewOnAction() {
         System.out.println("Products View clicked");
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/ProductsView.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/view/inventory/ProductManagement.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle("Products - CLOTHIFY");

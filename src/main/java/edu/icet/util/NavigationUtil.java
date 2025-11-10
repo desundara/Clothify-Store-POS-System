@@ -84,7 +84,7 @@ public class NavigationUtil {
 
     public static void loadInventoryManagement() {
         System.out.println("Navigating to Inventory Management...");
-        loadFXML("/view/inventory/inventory-management.fxml", "Clothify POS - Inventory Management");
+        loadFXML("/view/inventory/InventoryManagement.fxml", "Clothify POS - Inventory Management");
     }
 
     public static void loadPurchaseOrderManagement() {
