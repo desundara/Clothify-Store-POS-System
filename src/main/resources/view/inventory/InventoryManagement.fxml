@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #f8f9fa;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.controller.inventory.InventoryManagementController">
+
+    <VBox layoutX="20.0" layoutY="26.0" spacing="20.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="26.0">
+
+        <!-- Header -->
+        <Label style="-fx-font-size: 28; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Inventory Management" />
+
+        <!-- Search and Filter Section -->
+        <HBox alignment="CENTER_LEFT" spacing="15.0">
+            <TextField fx:id="searchField" prefHeight="35.0" prefWidth="300.0" promptText="Search by product name or code..." style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-font-size: 14;" />
+            <ComboBox fx:id="cmbChangeType" prefHeight="35.0" prefWidth="150.0" promptText="All Types" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-font-size: 14;" />
+            <DatePicker fx:id="dateFrom" prefHeight="35.0" prefWidth="150.0" promptText="From Date" style="-fx-background-radius: 5; -fx-border-radius: 5;" />
+            <DatePicker fx:id="dateTo" prefHeight="35.0" prefWidth="150.0" promptText="To Date" style="-fx-background-radius: 5; -fx-border-radius: 5;" />
+            <Button fx:id="btnSearch" onAction="#btnSearchOnAction" style="-fx-background-color: #4663AC; -fx-text-fill: white; -fx-pref-height: 35; -fx-background-radius: 5; -fx-font-size: 14;" text="Search" />
+            <Button fx:id="btnClearFilter" onAction="#btnClearFilterOnAction" style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-pref-height: 35; -fx-background-radius: 5; -fx-font-size: 14;" text="Clear" />
+        </HBox>
+
+        <!-- Main Content -->
+        <HBox spacing="20.0" VBox.vgrow="ALWAYS">
+
+            <!-- Left Side - Inventory Log Table -->
+            <VBox prefWidth="800.0" spacing="15.0" HBox.hgrow="ALWAYS">
+                <Label style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Inventory Transaction History" />
+
+                <!-- Inventory Log Table -->
+                <TableView fx:id="inventoryTable" prefHeight="500.0" style="-fx-background-color: white; -fx-border-radius: 8; -fx-border-color: #e0e0e0;" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colLogId" prefWidth="80.0" text="Log ID" />
+                        <TableColumn fx:id="colProduct" prefWidth="200.0" text="Product" />
+                        <TableColumn fx:id="colSupplier" prefWidth="150.0" text="Supplier" />
+                        <TableColumn fx:id="colChangeType" prefWidth="100.0" text="Type" />
+                        <TableColumn fx:id="colQtyChanged" prefWidth="120.0" text="Qty Changed" />
+                        <TableColumn fx:id="colDate" prefWidth="150.0" text="Date &amp; Time" />
+                    </columns>
+                </TableView>
+
+                <!-- Summary Section -->
+                <HBox spacing="20.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 15; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+                    <VBox spacing="5.0">
+                        <Label style="-fx-text-fill: #7f8c8d; -fx-font-size: 14;" text="Total Stock In" />
+                        <Label fx:id="lblTotalIn" style="-fx-text-fill: #27ae60; -fx-font-size: 18; -fx-font-weight: bold;" text="0" />
+                    </VBox>
+                    <VBox spacing="5.0">
+                        <Label style="-fx-text-fill: #7f8c8d; -fx-font-size: 14;" text="Total Stock Out" />
+                        <Label fx:id="lblTotalOut" style="-fx-text-fill: #e74c3c; -fx-font-size: 18; -fx-font-weight: bold;" text="0" />
+                    </VBox>
+                    <VBox spacing="5.0">
+                        <Label style="-fx-text-fill: #7f8c8d; -fx-font-size: 14;" text="Net Change" />
+                        <Label fx:id="lblNetChange" style="-fx-text-fill: #3498db; -fx-font-size: 18; -fx-font-weight: bold;" text="0" />
+                    </VBox>
+                </HBox>
+            </VBox>
+
+            <!-- Right Side - Add Transaction Form -->
+            <VBox prefWidth="350.0" spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 15, 0, 0, 3);">
+                <Label style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Add Inventory Transaction" />
+
+                <!-- Transaction Form -->
+                <VBox spacing="15.0">
+                    <!-- Product Selection -->
+                    <VBox spacing="5.0">
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 14;" text="Product:" />
+                        <ComboBox fx:id="cmbProduct" prefHeight="35.0" prefWidth="300.0" promptText="Select Product" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-font-size: 14;" />
+                    </VBox>
+
+                    <!-- Supplier Selection -->
+                    <VBox spacing="5.0">
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 14;" text="Supplier (Optional):" />
+                        <ComboBox fx:id="cmbSupplier" prefHeight="35.0" prefWidth="300.0" promptText="Select Supplier" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-font-size: 14;" />
+                    </VBox>
+                    <!-- Transaction Type -->
+                    <VBox spacing="5.0">
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 14;" text="Transaction Type:" />
+                        <HBox spacing="10.0">
+                            <RadioButton fx:id="rbStockIn" selected="true" style="-fx-font-size: 14;" text="Stock In" />
+                            <RadioButton fx:id="rbStockOut" style="-fx-font-size: 14;" text="Stock Out" />
+                        </HBox>
+                    </VBox>
+
+                    <!-- Quantity -->
+                    <VBox spacing="5.0">
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 14;" text="Quantity:" />
+                        <TextField fx:id="txtQuantity" prefHeight="35.0" prefWidth="300.0" promptText="Enter quantity" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-font-size: 14;" />
+                    </VBox>
+
+                    <!-- Notes -->
+                    <VBox spacing="5.0">
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 14;" text="Notes (Optional):" />
+                        <TextArea fx:id="txtNotes" prefHeight="80.0" prefWidth="300.0" promptText="Add any notes..." style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-font-size: 14;" wrapText="true" />
+                    </VBox>
+
+                    <!-- Action Buttons -->
+                    <HBox alignment="CENTER" spacing="10.0">
+                        <Button fx:id="btnAddTransaction" onAction="#btnAddTransactionOnAction" prefWidth="145.0" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-pref-width: 120; -fx-pref-height: 40; -fx-background-radius: 5; -fx-font-size: 14; -fx-font-weight: bold;" text="Add Transaction" />
+                        <Button fx:id="btnClearForm" onAction="#btnClearFormOnAction" prefWidth="94.0" style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-pref-width: 80; -fx-pref-height: 40; -fx-background-radius: 5; -fx-font-size: 14;" text="Clear" />
+                    </HBox>
+                </VBox>
+            </VBox>
+        </HBox>
+
+    </VBox>
+
+</AnchorPane>
