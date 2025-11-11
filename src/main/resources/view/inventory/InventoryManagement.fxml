@@ -45,7 +45,7 @@
                         <TableColumn fx:id="colSupplier" prefWidth="150.0" text="Supplier" />
                         <TableColumn fx:id="colChangeType" prefWidth="100.0" text="Type" />
                         <TableColumn fx:id="colQtyChanged" prefWidth="120.0" text="Qty Changed" />
-                        <TableColumn fx:id="colDate" prefWidth="150.0" text="Date &amp; Time" />
+                        <TableColumn fx:id="colDate" prefWidth="136.79998779296875" text="Date &amp; Time" />
                     </columns>
                 </TableView>
 
