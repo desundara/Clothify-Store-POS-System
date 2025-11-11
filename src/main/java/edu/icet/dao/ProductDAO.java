@@ -67,7 +67,7 @@ public class ProductDAO {
         return products;
     }
 
-    // ✅ Helper method to get category name
+    // Helper method to get category name
     private static String getCategoryNameById(int categoryId) {
         switch (categoryId) {
             case 1: return "Denim Collection";
