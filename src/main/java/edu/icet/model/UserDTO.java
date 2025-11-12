@@ -2,7 +2,7 @@ package edu.icet.model;
 
 import lombok.*;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 @Getter
 @Setter
@@ -15,7 +15,7 @@ public class UserDTO {
         private String password;
         private String email;
         private String role;
-        private String employeeId;
+        private Integer employeeId;
         private boolean isActive = true;
         private Timestamp deletedAt;
 

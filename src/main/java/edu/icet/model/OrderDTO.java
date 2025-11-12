@@ -3,6 +3,7 @@ package edu.icet.model;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -15,4 +16,5 @@ public class OrderDTO {
     private Double total;
     private Integer employeeId;
     private String status; // "PENDING", "COMPLETED", "CANCELLED"
+    private List<OrderItemDTO> items;
 }
