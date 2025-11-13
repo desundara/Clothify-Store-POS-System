@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #f8f9fa;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.controller.sales.POSController">
+
+    <!-- Main Layout with Sidebar and Content -->
+    <HBox spacing="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+
+        <!-- Sidebar -->
+        <VBox prefWidth="250" spacing="0" style="-fx-background-color: #2c3e50;">
+            <!-- Sidebar Header -->
+            <VBox alignment="CENTER" style="-fx-background-color: #34495e; -fx-padding: 20;">
+                <ImageView fitHeight="54.0" fitWidth="161.0">
+                    <image>
+                        <Image url="@../../images/ApparelPOS.png" />
+                    </image>
+                </ImageView>
+                <Label style="-fx-text-fill: #bdc3c7; -fx-font-size: 14; -fx-padding: 5 0 0 0;" text="Welcome, Gayani!" />
+            </VBox>
+
+            <!-- Navigation Menu - Buttons -->
+            <VBox prefHeight="583.0" prefWidth="220.0" spacing="5" style="-fx-padding: 20 15;">
+                <!-- Dashboard Button -->
+                <Button fx:id="btnDashboard" onAction="#btnDashboardOnAction" prefHeight="44.0" prefWidth="182.0" style="-fx-background-color: #34495e; -fx-text-fill: #ecf0f1; -fx-font-size: 14; -fx-padding: 12 20; -fx-alignment: CENTER; -fx-cursor: hand;" text=" Dashboard" />
+
+                <!-- POS Button (Active) -->
+                <Button fx:id="btnPOS" alignment="CENTER" onAction="#btnPOSOnAction" prefHeight="44.0" prefWidth="182.0" style="-fx-background-color: #4663AC; -fx-text-fill: white; -fx-font-size: 14; -fx-padding: 12 20; -fx-alignment: CENTER; -fx-cursor: hand; -fx-font-weight: bold;" text=" POS" />
+
+                <!-- Products Button -->
+                <Button fx:id="btnProducts" alignment="CENTER" onAction="#btnProductsOnAction" prefHeight="44.0" prefWidth="183.0" style="-fx-background-color: #34495e; -fx-text-fill: #ecf0f1; -fx-font-size: 14; -fx-padding: 12 20; -fx-alignment: CENTER; -fx-cursor: hand;" text=" Products (View Only)" />
+
+                <!-- My Sales Button -->
+                <Button fx:id="btnMySales" alignment="CENTER" onAction="#btnMySalesOnAction" prefHeight="44.0" prefWidth="183.0" style="-fx-background-color: #34495e; -fx-text-fill: #ecf0f1; -fx-font-size: 14; -fx-padding: 12 20; -fx-alignment: CENTER; -fx-cursor: hand;" text=" My Sales" />
+
+                <!-- Inventory Button -->
+                <Button fx:id="btnInventory" alignment="CENTER" onAction="#btnInventoryOnAction" prefHeight="44.0" prefWidth="182.0" style="-fx-background-color: #34495e; -fx-text-fill: #ecf0f1; -fx-font-size: 14; -fx-padding: 12 20; -fx-alignment: CENTER; -fx-cursor: hand;" text=" Inventory" />
+
+                <!-- View Stock Button -->
+                <Button fx:id="btnViewStock" alignment="CENTER" onAction="#btnViewStockOnAction" prefHeight="44.0" prefWidth="182.0" style="-fx-background-color: #34495e; -fx-text-fill: #ecf0f1; -fx-font-size: 14; -fx-padding: 12 20; -fx-alignment: CENTER; -fx-cursor: hand;" text=" View Stock" />
+
+                <!-- My Profile Button -->
+                <Button fx:id="btnMyProfile" alignment="CENTER" onAction="#btnMyProfileOnAction" prefHeight="44.0" prefWidth="181.0" style="-fx-background-color: #34495e; -fx-text-fill: #ecf0f1; -fx-font-size: 14; -fx-padding: 12 20; -fx-alignment: CENTER; -fx-cursor: hand;" text=" My Profile" />
+            <VBox prefHeight="200.0" prefWidth="100.0" />
+
+                <!-- Log Out Button -->
+                <Button fx:id="btnLogout" alignment="CENTER" onAction="#btnLogoutOnAction" prefHeight="44.0" prefWidth="170.0" style="-fx-background-color: #e74c3c; -fx-text-fill: #ecf0f1; -fx-font-size: 14; -fx-padding: 12 20; -fx-alignment: CENTER; -fx-cursor: hand; -fx-font-weight: bold;" text=" Log Out" textFill="WHITE" />
+            </VBox>
+        </VBox>
+
+        <!-- Main Content Area -->
+        <VBox spacing="0" HBox.hgrow="ALWAYS">
+
+            <!-- Top Bar -->
+            <HBox alignment="CENTER_RIGHT" style="-fx-background-color: white; -fx-padding: 15 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);">
+                <Region HBox.hgrow="ALWAYS" />
+                <Label style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Point of Sale (POS)" />
+            </HBox>
+
+            <!-- POS Content -->
+            <HBox spacing="20" style="-fx-padding: 20;" VBox.vgrow="ALWAYS">
+
+                <!-- Left Side - Product Selection -->
+                <VBox prefWidth="400.0" spacing="15">
+                    <!-- Search and Filter -->
+                    <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <TextField fx:id="searchField" promptText="Search by name, code, or category..." style="-fx-pref-height: 42; -fx-font-size: 14; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #e1e8ed; -fx-border-width: 1.5; -fx-padding: 10 15; -fx-background-color: #f8f9fa;" HBox.hgrow="ALWAYS" />
+                            <Button fx:id="searchButton" style="-fx-background-color: linear-gradient(to bottom, #3498db, #2980b9); -fx-text-fill: white; -fx-font-weight: bold; -fx-pref-width: 100; -fx-pref-height: 42; -fx-background-radius: 8; -fx-font-size: 13; -fx-cursor: hand;" text="🔍 Search" />
+                        </HBox>
+                        <ComboBox fx:id="categoryComboBox" promptText="Select Category" style="-fx-pref-height: 40; -fx-font-size: 14;" />
+                    </VBox>
+
+                    <!-- Product Grid - Dynamic Content -->
+                    <ScrollPane fitToWidth="true" prefHeight="391.0" prefWidth="400.0" style="-fx-background: transparent; -fx-border-color: transparent;">
+                        <VBox fx:id="productContainer" spacing="10" style="-fx-padding: 5;" />
+                    </ScrollPane>
+                </VBox>
+
+                <!-- Right Side - Cart and Checkout -->
+                <VBox spacing="15" HBox.hgrow="ALWAYS">
+                    <!-- Current Cart -->
+                    <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" VBox.vgrow="ALWAYS">
+                        <Label style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Current Sale" />
+
+                        <!-- Cart Table -->
+                        <TableView fx:id="cartTable" prefHeight="300" style="-fx-padding: 10 0;">
+                            <columns>
+                                <TableColumn fx:id="productColumn" prefWidth="115.1999454498291" text="Product" />
+                                <TableColumn fx:id="quantityColumn" prefWidth="53.5999755859375" text="Qty" />
+                                <TableColumn fx:id="priceColumn" prefWidth="108.7999267578125" text="Price" />
+                                <TableColumn fx:id="totalColumn" prefWidth="110.4000244140625" text="Total" />
+                                <TableColumn fx:id="actionColumn" prefWidth="79.199951171875" text="Action" />
+                            </columns>
+                        </TableView>
+
+                        <!-- Order Summary -->
+                        <VBox spacing="10" style="-fx-padding: 15 0 0 0; -fx-border-color: #ecf0f1; -fx-border-width: 1 0 0 0;">
+                            <HBox>
+                                <Label style="-fx-font-size: 14; -fx-text-fill: #7f8c8d;" text="Subtotal:" />
+                                <Region HBox.hgrow="ALWAYS" />
+                                <Label fx:id="subtotalLabel" style="-fx-font-size: 14; -fx-font-weight: bold;" text="LKR 0.00" />
+                            </HBox>
+                            <HBox>
+                                <Label style="-fx-font-size: 14; -fx-text-fill: #7f8c8d;" text="Discount:" />
+                                <Region HBox.hgrow="ALWAYS" />
+                                <Label fx:id="discountLabel" style="-fx-font-size: 14; -fx-font-weight: bold;" text="LKR 0.00" />
+                            </HBox>
+                            <HBox>
+                                <Label style="-fx-font-size: 14; -fx-text-fill: #7f8c8d;" text="Tax:" />
+                                <Region HBox.hgrow="ALWAYS" />
+                                <Label fx:id="taxLabel" style="-fx-font-size: 14; -fx-font-weight: bold;" text="LKR 0.00" />
+                            </HBox>
+                            <Separator />
+                            <HBox>
+                                <Label style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Total:" />
+                                <Region HBox.hgrow="ALWAYS" />
+                                <Label fx:id="totalLabel" style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #27ae60;" text="LKR 0.00" />
+                            </HBox>
+                        </VBox>
+                    </VBox>
+
+                    <!-- Checkout Section -->
+                    <HBox spacing="15" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+                        <VBox spacing="10" HBox.hgrow="ALWAYS">
+                            <Label style="-fx-font-size: 14; -fx-font-weight: bold;" text="Payment Method" />
+                            <ComboBox fx:id="paymentMethodComboBox" promptText="Select Payment Method" style="-fx-pref-height: 40;" />
+                            <TextField fx:id="customerNameField" promptText="Customer Name (Optional)" style="-fx-pref-height: 40;" />
+                        </VBox>
+                        <VBox spacing="10">
+                            <Button fx:id="clearCartButton" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-pref-width: 120; -fx-pref-height: 40;" text="Clear Cart" />
+                            <Button fx:id="processPaymentButton" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-pref-width: 120; -fx-pref-height: 40;" text="Process Payment" />
+                        </VBox>
+                    </HBox>
+                </VBox>
+            </HBox>
+        </VBox>
+    </HBox>
+
+</AnchorPane>
