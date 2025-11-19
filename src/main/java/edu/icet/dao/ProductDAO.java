@@ -134,4 +134,106 @@ public class ProductDAO {
         }
         return false;
     }
+
+    // NEW METHODS FOR STOCK MANAGEMENT =========================================
+
+    public static boolean updateProductStock(int productId, int newStock) {
+        String sql = "UPDATE product SET qty = ? WHERE product_id = ?";
+
+        try (Connection conn = DBConnection.getInstance().getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, newStock);
+            pstmt.setInt(2, productId);
+
+            int rowsAffected = pstmt.executeUpdate();
+            System.out.println("✅ Stock updated for product ID " + productId + " to " + newStock);
+            return rowsAffected > 0;
+
+        } catch (SQLException e) {
+            System.err.println("❌ Error updating product stock: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public static ProductDTO getProductByCode(String code) {
+        String sql = "SELECT * FROM product WHERE code = ?";
+
+        try (Connection conn = DBConnection.getInstance().getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, code);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                ProductDTO product = new ProductDTO();
+                product.setProductId(rs.getInt("product_id"));
+                product.setCode(rs.getString("code"));
+                product.setName(rs.getString("name"));
+                product.setPrice(rs.getDouble("price"));
+                product.setQty(rs.getInt("qty"));
+                product.setCategoryId(rs.getInt("category_id"));
+                product.setCategoryName(getCategoryNameById(rs.getInt("category_id")));
+                return product;
+            }
+
+        } catch (SQLException e) {
+            System.err.println("❌ Error getting product by code: " + e.getMessage());
+        }
+        return null;
+    }
+
+    public static ProductDTO getProductByName(String name) {
+        String sql = "SELECT * FROM product WHERE name = ?";
+
+        try (Connection conn = DBConnection.getInstance().getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, name);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                ProductDTO product = new ProductDTO();
+                product.setProductId(rs.getInt("product_id"));
+                product.setCode(rs.getString("code"));
+                product.setName(rs.getString("name"));
+                product.setPrice(rs.getDouble("price"));
+                product.setQty(rs.getInt("qty"));
+                product.setCategoryId(rs.getInt("category_id"));
+                product.setCategoryName(getCategoryNameById(rs.getInt("category_id")));
+                return product;
+            }
+
+        } catch (SQLException e) {
+            System.err.println("❌ Error getting product by name: " + e.getMessage());
+        }
+        return null;
+    }
+
+    public static ProductDTO getProductById(int productId) {
+        String sql = "SELECT * FROM product WHERE product_id = ?";
+
+        try (Connection conn = DBConnection.getInstance().getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, productId);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                ProductDTO product = new ProductDTO();
+                product.setProductId(rs.getInt("product_id"));
+                product.setCode(rs.getString("code"));
+                product.setName(rs.getString("name"));
+                product.setPrice(rs.getDouble("price"));
+                product.setQty(rs.getInt("qty"));
+                product.setCategoryId(rs.getInt("category_id"));
+                product.setCategoryName(getCategoryNameById(rs.getInt("category_id")));
+                return product;
+            }
+
+        } catch (SQLException e) {
+            System.err.println("❌ Error getting product by ID: " + e.getMessage());
+        }
+        return null;
+    }
 }

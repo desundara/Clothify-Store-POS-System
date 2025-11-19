@@ -102,12 +102,6 @@ public class AdminDashboardController implements Initializable {
     }
 
     @FXML
-    private void btnSalesOnAction(ActionEvent event) {
-        System.out.println("Sales clicked");
-        NavigationUtil.loadSalesManagement();
-    }
-
-    @FXML
     private void btnInventoryOnAction(ActionEvent event) {
         System.out.println("Inventory clicked");
         NavigationUtil.loadInventoryManagement();
@@ -116,7 +110,7 @@ public class AdminDashboardController implements Initializable {
     @FXML
     private void btnPurchaseOrderOnAction(ActionEvent event) {
         System.out.println("Purchase Order clicked");
-        NavigationUtil.loadPurchaseOrderManagement();
+        NavigationUtil.loadOrderManagement();
     }
 
     @FXML

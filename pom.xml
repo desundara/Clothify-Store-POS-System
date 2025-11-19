@@ -53,5 +53,11 @@
             <version>0.10.2</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>6.4.0.Final</version>
+        </dependency>
+
     </dependencies>
 </project>

@@ -163,7 +163,7 @@ public class StaffDashboardController implements Initializable {
     private void btnPOSOnAction() {
         System.out.println("POS clicked");
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/POS.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/view/sales/POS.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle("POS - CLOTHIFY");

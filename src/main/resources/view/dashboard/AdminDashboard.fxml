@@ -30,11 +30,9 @@
             <VBox spacing="8.0">
                 <Button fx:id="btnDashboard" onAction="#btnDashboardOnAction" style="-fx-background-color: #4663AC; -fx-text-fill: white; -fx-pref-width: 180; -fx-pref-height: 40; -fx-font-size: 14; -fx-background-radius: 5;" text="Dashboard" />
                 <Button fx:id="btnProduct" onAction="#btnProductOnAction" style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-pref-width: 180; -fx-pref-height: 40; -fx-font-size: 14; -fx-background-radius: 5;" text="Product" />
-                <Button fx:id="btnSales" onAction="#btnSalesOnAction" style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-pref-width: 180; -fx-pref-height: 40; -fx-font-size: 14; -fx-background-radius: 5;" text="Sales" />
                 <Button fx:id="btnInventory" onAction="#btnInventoryOnAction" style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-pref-width: 180; -fx-pref-height: 40; -fx-font-size: 14; -fx-background-radius: 5;" text="Inventory" />
                 <Button fx:id="btnPurchaseOrder" onAction="#btnPurchaseOrderOnAction" style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-pref-width: 180; -fx-pref-height: 40; -fx-font-size: 14; -fx-background-radius: 5;" text="Purchase Order" />
                 <Button fx:id="btnReport" onAction="#btnReportOnAction" style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-pref-width: 180; -fx-pref-height: 40; -fx-font-size: 14; -fx-background-radius: 5;" text="Report" />
-                <Button fx:id="btnStaff" onAction="#btnStaffOnAction" style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-pref-width: 180; -fx-pref-height: 40; -fx-font-size: 14; -fx-background-radius: 5;" text="Staffs" />
             </VBox>
 
             <VBox VBox.vgrow="ALWAYS" />

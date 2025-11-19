@@ -87,9 +87,9 @@ public class NavigationUtil {
         loadFXML("/view/inventory/InventoryManagement.fxml", "Clothify POS - Inventory Management");
     }
 
-    public static void loadPurchaseOrderManagement() {
-        System.out.println("Navigating to Purchase Orders...");
-        loadFXML("/view/purchase/purchase-order-management.fxml", "Clothify POS - Purchase Orders");
+    public static void loadOrderManagement() {
+        System.out.println("Navigating to Orders...");
+        loadFXML("/view/sales/OrderManage.fxml", "Clothify POS - Order Management");
     }
 
     public static void loadReports() {
