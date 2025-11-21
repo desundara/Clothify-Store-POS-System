@@ -19,7 +19,7 @@
             <Label style="-fx-text-fill: #2c3e50; -fx-font-size: 24; -fx-font-weight: bold;" text="Order Management" />
             <Label style="-fx-text-fill: #7f8c8d; -fx-font-size: 14; -fx-padding: 5 0 0 0;" text="Manage and track all customer orders" />
         </VBox>
-        <Button style="-fx-background-color: #4663AC; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20; -fx-background-radius: 6;" text="+ New Order" />
+        <Button fx:id="newOrderButton" onAction="#handleNewOrder" style="-fx-background-color: #4663AC; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20; -fx-background-radius: 6;" text="+ New Order" />
     </HBox>
 
     <HBox prefHeight="600.0" prefWidth="982.0" spacing="20" style="-fx-padding: 20;" VBox.vgrow="ALWAYS">
@@ -29,14 +29,14 @@
 
             <!-- Filters -->
             <HBox alignment="CENTER_LEFT" prefHeight="66.0" prefWidth="866.0" spacing="15" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 20;">
-                <TextField prefHeight="26.0" prefWidth="199.0" promptText="Search..." />
-                <DatePicker prefHeight="26.0" prefWidth="106.0" promptText="Start Date" />
-                <DatePicker prefHeight="26.0" prefWidth="107.0" promptText="End Date" />
-                <ComboBox promptText="Status" />
+                <TextField fx:id="searchField" prefHeight="26.0" prefWidth="199.0" promptText="Search..." />
+                <DatePicker fx:id="startDatePicker" prefHeight="26.0" prefWidth="106.0" promptText="Start Date" />
+                <DatePicker fx:id="endDatePicker" prefHeight="26.0" prefWidth="107.0" promptText="End Date" />
+                <ComboBox fx:id="statusComboBox" prefWidth="120.0" promptText="Status" />
 
                 <Region prefHeight="26.0" prefWidth="46.0" HBox.hgrow="ALWAYS" />
 
-                <Button prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: #4663AC; -fx-text-fill: white;" text="🔍 Search" />
+                <Button fx:id="searchButton" onAction="#handleSearch" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: #4663AC; -fx-text-fill: white;" text="🔍 Search" />
             </HBox>
 
             <!-- Orders Table -->
@@ -45,16 +45,18 @@
                 <HBox alignment="CENTER_LEFT" style="-fx-padding: 0 0 15 0;">
                     <Label style="-fx-text-fill: #2c3e50; -fx-font-size: 18; -fx-font-weight: bold;" text="All Orders" />
                     <Region HBox.hgrow="ALWAYS" />
+                    <Label fx:id="ordersCountLabel" style="-fx-text-fill: #7f8c8d; -fx-font-size: 12;" text="Showing 0 orders" />
                 </HBox>
-            <TableView prefHeight="200.0" prefWidth="200.0">
-              <columns>
-                <TableColumn prefWidth="130.39999771118164" text="Order ID" />
-                <TableColumn prefWidth="138.3999786376953" text="Date" />
-                  <TableColumn prefWidth="181.60003662109375" text="Total" />
-                  <TableColumn prefWidth="142.4000244140625" text="Employee ID" />
-                  <TableColumn prefWidth="199.199951171875" text="Status" />
-              </columns>
-            </TableView>
+
+                <TableView fx:id="ordersTable" prefHeight="400.0" prefWidth="800.0">
+                    <columns>
+                        <TableColumn fx:id="orderIdColumn" prefWidth="130.0" text="Order ID" />
+                        <TableColumn fx:id="dateColumn" prefWidth="138.0" text="Date" />
+                        <TableColumn fx:id="totalColumn" prefWidth="182.0" text="Total" />
+                        <TableColumn fx:id="employeeIdColumn" prefWidth="142.0" text="Employee ID" />
+                        <TableColumn fx:id="statusColumn" prefWidth="199.0" text="Status" />
+                    </columns>
+                </TableView>
 
             </VBox>
 

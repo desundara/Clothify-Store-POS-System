@@ -108,8 +108,8 @@ public class AdminDashboardController implements Initializable {
     }
 
     @FXML
-    private void btnPurchaseOrderOnAction(ActionEvent event) {
-        System.out.println("Purchase Order clicked");
+    private void btnOrderOnAction(ActionEvent event) {
+        System.out.println("Orders clicked");
         NavigationUtil.loadOrderManagement();
     }
 
